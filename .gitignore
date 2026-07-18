@@ -3,6 +3,8 @@ __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
+myproject/__pycache__
+
 
 # Virtual Environment
 venv/
