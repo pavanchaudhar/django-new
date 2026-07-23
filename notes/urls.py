@@ -1,12 +1,14 @@
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path('', views.home, name='home'),
-    path('add/', views.add_note, name='home'),
+    path("", views.home, name="home"),
     path("notes/", views.note_list, name="note_list"),
+    path("add/", views.add_note, name="add_note"),
     path("edit/<int:id>/", views.edit_note, name="edit_note"),
     path("delete/<int:id>/", views.delete_note, name="delete_note"),
+
+    path("register/", views.register, name="register"),
+    path("login/", views.user_login, name="login"),
+    path("logout/", views.user_logout, name="logout"),
 ]

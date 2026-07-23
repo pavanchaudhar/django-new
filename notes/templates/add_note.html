@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
+{% extends 'base.html' %}
 
-<title>Add Note</title>
+{% block title %}
+Add Note
+{% endblock %}
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-
-</head>
-
-<body>
-
-<div class="container mt-5">
+{% block content %}
 
 <h2>Add Note</h2>
 
@@ -21,22 +15,9 @@
 {{ form.as_p }}
 
 <button class="btn btn-success">
-
 Save Note
-
 </button>
 
 </form>
 
-<br>
-
-<a href="/notes/" class="btn btn-secondary">
-
-Back
-
-</a>
-
-</div>
-
-</body>
-</html>
+{% endblock %}
