@@ -15,8 +15,11 @@ def add_note(request):
     if request.method == "POST":
         form = NoteForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect("note_list")
+             note = form.save(commit=False)
+             note.user = request.user
+             note.save()
+             return redirect("note_list")
+            
     else:
         form = NoteForm()
 
@@ -24,12 +27,12 @@ def add_note(request):
 
 @login_required
 def note_list(request):
-    notes = Note.objects.all().order_by("-created_at")
+    notes = Note.objects.filter(user=request.user)
     return render(request, "note_list.html", {"notes": notes})
 
 @login_required
 def edit_note(request, id):
-    note = get_object_or_404(Note, id=id)
+    note = get_object_or_404(Note, id=id, user=request.user)
 
     if request.method == "POST":
         form = NoteForm(request.POST, instance=note)
@@ -43,7 +46,7 @@ def edit_note(request, id):
 
 @login_required
 def delete_note(request, id):
-    note = get_object_or_404(Note, id=id)
+    note = get_object_or_404(Note, id=id, user=request.user)
 
     if request.method == "POST":
         note.delete()
